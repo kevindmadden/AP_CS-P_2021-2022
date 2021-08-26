@@ -9,3 +9,11 @@ p {
 h1 {
     color: red
 }
+
+p.enlarge {
+    font-size: 40px;
+}
+
+h1.enlarge {
+    font-size: 80px;
+}
