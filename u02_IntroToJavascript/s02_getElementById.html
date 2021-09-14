@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <h1 id="penguins">Whatever</h1>
+    <button onClick="myFirstFunction()">Button</button>
+    <button onClick="restoreOriginalText()">Back</button>
+
+    <script>
+        let originalText = document.getElementById("penguins").innerHTML
+
+        function myFirstFunction(){
+            document.getElementById("penguins").innerHTML = "New text here."
+        }
+
+        function restoreOriginalText(){
+            document.getElementById("penguins").innerHTML = originalText
+        }
+
+    </script>
+
+</body>
+</html>
