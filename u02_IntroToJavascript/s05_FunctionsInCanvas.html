@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <canvas id="canvas" width="500px" height="500px" style="border: 1px solid black;" tabindex="1" autofocus></canvas>
+    <script>
+        //Canvas API: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext("2d")
+
+        function drawTriangle(){
+            ctx.beginPath()
+            ctx.moveTo(0,0)
+            ctx.lineTo(100,50)
+            ctx.lineTo(0,50)
+            ctx.closePath()
+            ctx.stroke()
+        }
+
+        //Option 1
+        ctx.save()
+        drawTriangle()
+        ctx.translate(200,200)
+        drawTriangle()
+        ctx.translate(200,200)
+        drawTriangle()
+        ctx.restore()
+
+        //Option 2
+        function drawTriangleV2(xShift, yShift){
+            ctx.beginPath()
+            ctx.moveTo(0+xShift,0+yShift)
+            ctx.lineTo(100+xShift,50+yShift)
+            ctx.lineTo(0+xShift,50+yShift)
+            ctx.closePath()
+            ctx.stroke()
+        }
+
+        drawTriangleV2(300,0)
+        drawTriangleV2(300, 50)
+        drawTriangleV2(300, 100)
+
+
+
+
+    </script>
+</head>
+<body></body>
+</html>
