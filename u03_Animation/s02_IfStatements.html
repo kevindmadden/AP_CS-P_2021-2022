@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <canvas id="canvas" width="500px" height="500px" style="border: 1px solid black;" tabindex="1" autofocus></canvas>
+    <script>
+        //Canvas API: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext("2d")
+
+        // pos = pos +velocity*time
+        // A car is traveling at 70mph. If the car has already traveled 30 miles. How far total will the car have traveled after 3 more hours?
+        // 70mph * 3 + 30miles => 240miles
+        // A rectangle is traveling at 100px/sec. If the rectangle has already traveled 50px, how far will the rectangle travel in 2 seconds?
+        //  Over the next two seconds, the rectangle will travel 200 additional px.
+
+        let xVel = 150
+        let xPos = 50
+
+        let prevTimeStamp = 0
+        window.requestAnimationFrame(gameLoop)
+        function gameLoop(currentTimeStamp){
+            let timeElapsed = (currentTimeStamp - prevTimeStamp) / 1000
+            prevTimeStamp = currentTimeStamp
+
+            ctx.fillStyle = "white"
+            ctx.fillRect(0,0,500,500)
+
+            //       50  + 100*(1/60)
+            xPos = xPos + xVel*timeElapsed
+
+            console.log(xPos)
+            if(xPos > 500){
+                xVel = -150
+            }
+
+            ctx.strokeStyle = "black"
+            ctx.strokeRect(xPos, 50, 100, 100)
+
+            window.requestAnimationFrame(gameLoop)
+        }
+
+
+
+    </script>
+</head>
+<body></body>
+</html>
