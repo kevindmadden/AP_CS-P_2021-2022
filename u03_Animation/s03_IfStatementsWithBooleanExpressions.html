@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <canvas id="canvas" width="500px" height="500px" style="border: 1px solid black;" tabindex="1" autofocus></canvas>
+    <script>
+        //Canvas API: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext("2d")
+
+
+        let xVel = 150
+        let xPos = 50
+
+        let isAlternateColor = false
+
+
+        let prevTimeStamp = 0
+        window.requestAnimationFrame(gameLoop)
+        function gameLoop(currentTimeStamp){
+            let timeElapsed = (currentTimeStamp - prevTimeStamp) / 1000
+            prevTimeStamp = currentTimeStamp
+
+            ctx.fillStyle = "white"
+            ctx.fillRect(0,0,500,500)
+
+            xPos = xPos + xVel*timeElapsed
+
+            if(xPos + 30 > 500){
+                xVel = -300
+            }
+            if(xPos < 0){
+                xVel = 300
+            }
+
+            //Option #1
+            /*isAlternateColor = false
+            if(xPos + 30 > 125){
+                if(xPos < 375){
+                    isAlternateColor = true
+                }
+            }*/
+
+            //Option #2
+            /*isAlternateColor = false
+            if(xPos + 30 > 125 && xPos < 375){
+                isAlternateColor = true
+            }*/
+
+            //Option #3
+            if(xPos + 30 > 125 && xPos < 375){
+                isAlternateColor = true
+            }else{
+                isAlternateColor = false
+            }
+
+            //Boolean Expressions:
+            // && - And
+            // || - Or
+
+
+
+            if(isAlternateColor){ //long way: (isAlternateColor === true){
+                ctx.fillStyle = "green"
+            }else{
+                ctx.fillStyle = "blue"
+            }
+
+            ctx.fillRect(xPos, 50, 30, 50)
+
+            window.requestAnimationFrame(gameLoop)
+        }
+
+
+
+    </script>
+</head>
+<body></body>
+</html>
