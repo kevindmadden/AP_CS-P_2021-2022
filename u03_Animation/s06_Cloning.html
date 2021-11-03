@@ -16,8 +16,34 @@
         //Add player back in
         //Cycle through all of the enemies
             //for each enemy, we're going to check collisions (between enemy and player)
+        //List of possible ideas to expand upon this:
+            //Make walls of circles (maze-like)
+            //Touching circle causes enemy to grow
+            //Touching circle causes is to change color
+            // (You can add onto the number of properties in the enemy that gets created)   //You could make all the enemies move***
+
+        let player = {
+            xPos: 0,
+            yPos: 0,
+            radius: 20,
+        }
+
+        function createEnemy(xPos, yPos){
+            let enemy = {
+                xPos: xPos,
+                yPos: yPos,
+                radius: 10,
+            }
+            return enemy
+        }
 
         let enemies = []
+        enemies.push(createEnemy(100,100))
+        enemies.push(createEnemy(400,400))
+        enemies.push(createEnemy(250,250))
+
+        let isGameOver = false
+
 
         let prevTimeStamp = 0
         window.requestAnimationFrame(gameLoop)
@@ -26,10 +52,41 @@
             prevTimeStamp = currentTimeStamp
             ctx.clearRect(0, 0, 500, 500)
 
+            player.xPos = xCoord
+            player.yPos = yCoord
+
+            for(let enemy of enemies){
+                if(didCirclesColl(player, enemy)){
+                    isGameOver = true
+                }
+            }
+
+
+            /*
+                Graphics
+             */
+
+            //User's Player
+            ctx.beginPath();
+            ctx.arc(player.xPos, player.yPos, player.radius, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            for(let enemy of enemies){
+                ctx.beginPath();
+                ctx.arc(enemy.xPos, enemy.yPos, enemy.radius, 0, 2 * Math.PI)
+                ctx.stroke()
+            }
+
+            if(isGameOver){
+                ctx.fillText("GAME OVER!!!!", 100, 400)
+            }
+
+
 
 
             window.requestAnimationFrame(gameLoop)
         }
+
 
 
         function didCirclesColl(circle1, circle2){
