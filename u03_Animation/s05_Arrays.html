@@ -10,6 +10,26 @@
         const canvas = document.getElementById("canvas")
         const ctx = canvas.getContext("2d")
 
+
+        let fishies = ["spike", "Dory", "Nemo", "Martin", "spider", "Darla", "mine", "Jenny"]
+
+        for(let fish of fishies){
+            console.log("One day, "+fish+" swam.")
+            //more
+            //stuff
+        }
+
+        fishies.push("sai")
+
+        for(let fish of fishies){
+            console.log("One day, "+fish+" didn't swim.")
+            //more
+            //stuff
+        }
+
+
+
+
         let prevTimeStamp = 0
         window.requestAnimationFrame(gameLoop)
         function gameLoop(currentTimeStamp) {
@@ -22,14 +42,6 @@
             window.requestAnimationFrame(gameLoop)
         }
 
-
-        function didCirclesColl(circle1, circle2){
-            let distance = Math.sqrt(Math.pow((circle1.xPos-circle2.xPos),2) + Math.pow((circle1.yPos-circle2.yPos),2))
-            if(distance < circle1.radius+circle2.radius){
-                return true
-            }
-            return false
-        }
 
         //Mouse Input Stuff
         let xCoord = 0
