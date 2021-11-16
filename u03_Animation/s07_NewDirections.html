@@ -62,7 +62,11 @@
 
             for(let enemy of enemies){
                 if(didCirclesColl(player, enemy)){
-                    score++
+                    if(enemy.type===1){
+                        score=0
+                    }else{
+                        score++
+                    }
                     let indexOfCurrentEnemy = enemies.indexOf(enemy)
                     enemies.splice(indexOfCurrentEnemy, 1) //this is how you delete a specific item from an array
                     enemies.push(createEnemy(Math.random()*500,Math.random()*500,0))
@@ -95,6 +99,7 @@
 
 
             ctx.font = 'bold 48px serif'
+            ctx.fillStyle="black"
             ctx.fillText(score, 400, 470)
 
 

@@ -10,6 +10,16 @@
         const canvas = document.getElementById("canvas")
         const ctx = canvas.getContext("2d")
 
+
+        let square = {
+            xPos: 250,
+            yPos: 250,
+            width: 50,
+            height: 50,
+            xVel: 0,
+            yVel: 0,
+        }
+
         let prevTimeStamp = 0
         window.requestAnimationFrame(gameLoop)
         function gameLoop(currentTimeStamp) {
@@ -17,7 +27,25 @@
             prevTimeStamp = currentTimeStamp
             ctx.clearRect(0, 0, 500, 500)
 
+            square.xPos = square.xPos + square.xVel*timeElapsed
+            square.yPos = square.yPos + square.yVel*timeElapsed
 
+            if(kbInput.left.isPressed && kbInput.right.isPressed){
+                square.xVel = 0
+            }else if(kbInput.right.isPressed){
+                square.xVel = 50
+            }else if(kbInput.left.isPressed){
+                square.xVel = -50
+            }else{
+                square.xVel = 0
+            }
+
+
+
+            console.log("left: "+kbInput.left.isPressed)
+            console.log("right: "+kbInput.right.isPressed)
+
+            ctx.fillRect(square.xPos, square.yPos, square.width, square.height)
 
             window.requestAnimationFrame(gameLoop)
         }
