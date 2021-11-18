@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <canvas id="canvas" width="1000px" height="500px" style="border: 1px solid black;" tabindex="1" autofocus></canvas>
+    <p id="coordinateValues">Coordinates - x: 0, y: 0</p>
+    <script>
+        //Canvas API: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext("2d")
+
+
+        let square = {
+            xPos: 250,
+            yPos: 250,
+            width: 50,
+            height: 50,
+            xVel: 0,
+            yVel: 0,
+        }
+
+        let prevTimeStamp = 0
+        window.requestAnimationFrame(gameLoop)
+        function gameLoop(currentTimeStamp) {
+            let timeElapsed = (currentTimeStamp - prevTimeStamp) / 1000
+            prevTimeStamp = currentTimeStamp
+            ctx.clearRect(0, 0, 500, 500)
+
+            square.xPos = square.xPos + square.xVel*timeElapsed
+            square.yPos = square.yPos + square.yVel*timeElapsed
+
+            if(kbInput.left.isPressed && kbInput.right.isPressed){
+                square.xVel = 0
+            }else if(kbInput.right.isPressed){
+                square.xVel = 50
+            }else if(kbInput.left.isPressed){
+                square.xVel = -50
+            }else{
+                square.xVel = 0
+            }
+
+
+
+
+            //Drawing
+            ctx.fillRect(square.xPos, square.yPos, square.width, square.height)
+            //Left outer edge "semi" circle
+            ctx.beginPath();
+            ctx.arc(200, 250, 175, 0, 2 * Math.PI);
+            ctx.stroke();
+            //Left inner edge
+            ctx.beginPath();
+            ctx.arc(200, 250, 100, 0, 2 * Math.PI);
+            ctx.stroke();
+            //Left outer edge "semi" circle
+            ctx.beginPath();
+            ctx.arc(800, 250, 175, 0, 2 * Math.PI);
+            ctx.stroke();
+            //Right inner edge
+            ctx.beginPath();
+            ctx.arc(800, 250, 100, 0, 2 * Math.PI);
+            ctx.stroke();
+            //Top rectangle track
+            ctx.strokeRect(200,250-175,800-200,175-100)
+            //Bottom rectangle track
+            ctx.strokeRect(200,250+100,800-200,175-100)
+
+
+            window.requestAnimationFrame(gameLoop)
+        }
+
+
+        function didCirclesColl(circle1, circle2){
+            let distance = Math.sqrt(Math.pow((circle1.xPos-circle2.xPos),2) + Math.pow((circle1.yPos-circle2.yPos),2))
+            if(distance < circle1.radius+circle2.radius){
+                return true
+            }
+            return false
+        }
+
+        //Mouse Input Stuff
+        let xCoord = 0
+        let yCoord = 0
+        function getCursorPosition(canvas, event) {
+            const rect = canvas.getBoundingClientRect()
+            xCoord = event.clientX - rect.left
+            yCoord = event.clientY - rect.top
+            document.getElementById("coordinateValues").innerHTML = "Coordinates - x: "+xCoord+", y: "+yCoord
+        }
+
+        canvas.addEventListener('mousemove', function(e) { getCursorPosition(canvas, e)})
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        // Keyboard Input
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        canvas.addEventListener('keydown', keyHandler)
+        canvas.addEventListener('keyup', keyHandler)
+
+        let kbInput = {
+            left : {
+                value : "ArrowLeft",
+                isPressed: false,
+            },
+            right : {
+                value : "ArrowRight",
+                isPressed: false,
+            },
+            down : {
+                value : "ArrowDown",
+                isPressed: false,
+            },
+            up : {
+                value : "ArrowUp",
+                isPressed: false,
+            },
+        }
+
+        function keyHandler(event) {
+            event.preventDefault() //prevents the keys that you press from performing their default action in your internet browser (for ex: when you press the down arrow key, the browser window will not scroll down)
+            let type = event.type
+            let isPressed = false
+            if(type==="keydown"){
+                isPressed = true
+            }
+            if(event.key===kbInput.left.value){
+                kbInput.left.isPressed = isPressed
+            }
+            if(event.key===kbInput.right.value){
+                kbInput.right.isPressed = isPressed
+            }
+            if(event.key===kbInput.up.value){
+                kbInput.up.isPressed = isPressed
+            }
+            if(event.key===kbInput.down.value){
+                kbInput.down.isPressed = isPressed
+            }
+        }
+
+    </script>
+</head>
+<body></body>
+</html>
