@@ -20,12 +20,20 @@
             yVel: 0,
         }
 
+        let upHitbox = {
+            xPos: 200,
+            yPos: 20,
+            width: 600,
+            height: 55,
+        }
+
+
         let prevTimeStamp = 0
         window.requestAnimationFrame(gameLoop)
         function gameLoop(currentTimeStamp) {
             let timeElapsed = (currentTimeStamp - prevTimeStamp) / 1000
             prevTimeStamp = currentTimeStamp
-            ctx.clearRect(0, 0, 500, 500)
+            ctx.clearRect(0, 0, 1000, 500)
 
             square.xPos = square.xPos + square.xVel*timeElapsed
             square.yPos = square.yPos + square.yVel*timeElapsed
@@ -33,17 +41,30 @@
             if(kbInput.left.isPressed && kbInput.right.isPressed){
                 square.xVel = 0
             }else if(kbInput.right.isPressed){
-                square.xVel = 50
+                square.xVel = 200
             }else if(kbInput.left.isPressed){
-                square.xVel = -50
+                square.xVel = -200
             }else{
                 square.xVel = 0
             }
 
+            if(kbInput.up.isPressed && kbInput.down.isPressed){
+                square.yVel = 0
+            }else if(kbInput.up.isPressed){
+                square.yVel = -200
+            }else if(kbInput.down.isPressed){
+                square.yVel = 200
+            }else{
+                square.yVel = 0
+            }
+
+            //if()
 
 
 
+            // -------------------
             //Drawing
+            // --------------------
             ctx.fillRect(square.xPos, square.yPos, square.width, square.height)
             //Left outer edge "semi" circle
             ctx.beginPath();
@@ -66,6 +87,9 @@
             //Bottom rectangle track
             ctx.strokeRect(200,250+100,800-200,175-100)
 
+
+            //Upper hitbox
+            ctx.fillRect(upHitbox.xPos, upHitbox.yPos, upHitbox.width, upHitbox.height)
 
             window.requestAnimationFrame(gameLoop)
         }
