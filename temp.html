@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <canvas id="canvas" width="500px" height="500px" style="border: 1px solid black;" tabindex="1" autofocus></canvas>
+    <p id="coordinateValues">Coordinates - x: 0, y: 0</p>
+    <script>
+        'use strict';
+        //Canvas API: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext("2d")
+
+        //Our Goal:
+        // Make a game. There is a circle where the cursor is. And there's a circle in the middle of the screen.
+        // You win the game if you don't make the circles overlap.
+        // 1. Make circle appear wherever cursor is at.
+
+        let playerXPos = 0
+        let playerYPos = 0
+        let isGameOver = false
+
+        let player = {
+            xPos: 100,
+            yPos: 200,
+            radius: 30,
+        }
+
+        let enemy = {
+            xPos: 250,
+            yPos: 250,
+            radius: 20,
+        }
+
+        let prevTimeStamp = 0
+        window.requestAnimationFrame(gameLoop)
+        function gameLoop(currentTimeStamp) {
+            let timeElapsed = (currentTimeStamp - prevTimeStamp) / 1000
+            prevTimeStamp = currentTimeStamp
+            ctx.clearRect(0, 0, 500, 500)
+
+            player.xPos = xCoord
+            player.yPos = yCoord
+
+
+            //User's Player
+            ctx.beginPath();
+            ctx.arc(player.xPos, player.yPos, player.radius, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            //Opponent Circle
+            ctx.beginPath();
+            ctx.arc(enemy.xPos, enemy.yPos, enemy.radius, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            enemy.xPos = enemy.xPos + 20*timeElapsed
+
+            if(didCirclesCollide(player, enemy)){
+                isGameOver = true;
+            }else{
+                isGameOver = false
+            }
+
+            if(isGameOver){
+                ctx.fillText("GAME OVER!!!!", 100, 400)
+            }
+
+
+
+
+
+            window.requestAnimationFrame(gameLoop)
+        }
+
+        function didCirclesCollide(circle1, circle2){
+            let distance = Math.sqrt(Math.pow(circle1.xPos-circle2.xPos,2) + Math.pow(circle1.yPos-circle2.yPos,2))
+            if(distance < circle1.radius+circle2.radius){
+                return true
+            }
+            return false
+        }
+
+
+        //Mouse Input Stuff
+        let xCoord = 0
+        let yCoord = 0
+        function getCursorPosition(canvas, event) {
+            const rect = canvas.getBoundingClientRect()
+            xCoord = event.clientX - rect.left
+            yCoord = event.clientY - rect.top
+            document.getElementById("coordinateValues").innerHTML = "Coordinates - x: "+xCoord+", y: "+yCoord
+        }
+
+        canvas.addEventListener('mousemove', function(e) { getCursorPosition(canvas, e)})
+
+    </script>
+</head>
+<body></body>
+</html>

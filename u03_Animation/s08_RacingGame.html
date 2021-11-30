@@ -11,7 +11,7 @@
         const ctx = canvas.getContext("2d")
 
 
-        let square = {
+        let racecar = {
             xPos: 250,
             yPos: 250,
             width: 50,
@@ -26,6 +26,25 @@
             width: 600,
             height: 55,
         }
+        let innerUpHitbox = {
+            xPos: 200,
+            yPos: 150,
+            width: 600,
+            height: 55,
+        }
+        let innerDownHitbox = {
+            xPos: 200,
+            yPos: 295,
+            width: 600,
+            height: 55,
+        }
+        let downHitbox = {
+            xPos: 200,
+            yPos: 425,
+            width: 600,
+            height: 55,
+        }
+
 
 
         let prevTimeStamp = 0
@@ -35,37 +54,48 @@
             prevTimeStamp = currentTimeStamp
             ctx.clearRect(0, 0, 1000, 500)
 
-            square.xPos = square.xPos + square.xVel*timeElapsed
-            square.yPos = square.yPos + square.yVel*timeElapsed
+            racecar.xPos = racecar.xPos + racecar.xVel*timeElapsed
+            racecar.yPos = racecar.yPos + racecar.yVel*timeElapsed
 
             if(kbInput.left.isPressed && kbInput.right.isPressed){
-                square.xVel = 0
+                racecar.xVel = 0
             }else if(kbInput.right.isPressed){
-                square.xVel = 200
+                racecar.xVel = 200
             }else if(kbInput.left.isPressed){
-                square.xVel = -200
+                racecar.xVel = -200
             }else{
-                square.xVel = 0
+                racecar.xVel = 0
             }
 
             if(kbInput.up.isPressed && kbInput.down.isPressed){
-                square.yVel = 0
+                racecar.yVel = 0
             }else if(kbInput.up.isPressed){
-                square.yVel = -200
+                racecar.yVel = -200
             }else if(kbInput.down.isPressed){
-                square.yVel = 200
+                racecar.yVel = 200
             }else{
-                square.yVel = 0
+                racecar.yVel = 0
             }
 
-            //if()
+            if(didRectRectColl(racecar, upHitbox)){
+                racecar.yPos = upHitbox.yPos+upHitbox.height
+            }
+            if(didRectRectColl(racecar, innerUpHitbox)){
+                racecar.yPos = innerUpHitbox.yPos-racecar.height
+            }
+            if(didRectRectColl(racecar, innerDownHitbox)){
+                racecar.yPos = 350
+            }
+            if(didRectRectColl(racecar, downHitbox)){
+                racecar.yPos = 425-racecar.height
+            }
 
 
 
             // -------------------
             //Drawing
             // --------------------
-            ctx.fillRect(square.xPos, square.yPos, square.width, square.height)
+            ctx.fillRect(racecar.xPos, racecar.yPos, racecar.width, racecar.height)
             //Left outer edge "semi" circle
             ctx.beginPath();
             ctx.arc(200, 250, 175, 0, 2 * Math.PI);
@@ -89,7 +119,15 @@
 
 
             //Upper hitbox
-            ctx.fillRect(upHitbox.xPos, upHitbox.yPos, upHitbox.width, upHitbox.height)
+            //ctx.fillRect(upHitbox.xPos, upHitbox.yPos, upHitbox.width, upHitbox.height)
+            //InnerUp Hitbox
+            //ctx.fillRect(innerUpHitbox.xPos, innerUpHitbox.yPos, innerUpHitbox.width, innerUpHitbox.height)
+
+            //InnerDown Hitbox
+            //ctx.fillRect(innerDownHitbox.xPos, innerDownHitbox.yPos, innerDownHitbox.width, innerDownHitbox.height)
+
+            //Down Hitbox
+            //ctx.fillRect(downHitbox.xPos, downHitbox.yPos, downHitbox.width, downHitbox.height)
 
             window.requestAnimationFrame(gameLoop)
         }
@@ -102,6 +140,18 @@
             }
             return false
         }
+
+        function didRectRectColl(rect1, rect2){ //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+            if (rect1.xPos < rect2.xPos + rect2.width &&
+                rect1.xPos + rect1.width > rect2.xPos &&
+                rect1.yPos < rect2.yPos + rect2.height &&
+                rect1.yPos + rect1.height > rect2.yPos) {
+                return true
+            }else{
+                return false
+            }
+        }
+
 
         //Mouse Input Stuff
         let xCoord = 0

@@ -22,7 +22,7 @@
             window.requestAnimationFrame(gameLoop)
         }
 
-
+        //Collision Functions
         function didCirclesColl(circle1, circle2){
             let distance = Math.sqrt(Math.pow((circle1.xPos-circle2.xPos),2) + Math.pow((circle1.yPos-circle2.yPos),2))
             if(distance < circle1.radius+circle2.radius){
@@ -30,6 +30,18 @@
             }
             return false
         }
+
+        function didRectRectColl(rect1, rect2){ //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+            if (rect1.xPos < rect2.xPos + rect2.width &&
+                rect1.xPos + rect1.width > rect2.xPos &&
+                rect1.yPos < rect2.yPos + rect2.height &&
+                rect1.yPos + rect1.height > rect2.yPos) {
+                return true
+            }else{
+                return false
+            }
+        }
+
 
         //Mouse Input Stuff
         let xCoord = 0
