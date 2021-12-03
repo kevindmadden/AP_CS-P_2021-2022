@@ -13,9 +13,9 @@
 
         let racecar = {
             xPos: 250,
-            yPos: 380,
-            width: 35,
-            height: 25,
+            yPos: 250,
+            width: 50,
+            height: 50,
             xVel: 0,
             yVel: 0,
             prev: {
@@ -53,12 +53,6 @@
             xPos: 200,
             yPos: 250,
             radius: 100,
-        }
-
-        let leftOuterCircle = {
-            xPos: 200,
-            yPos: 250,
-            radius: 175
         }
 
 
@@ -110,17 +104,50 @@
             let topRight_x = racecar.xPos+racecar.width
             let topRight_y = racecar.yPos
 
+            /*if((isPointInCircle(topRight_x, topRight_y, leftInnerCircle))){
+                racecar.xPos = racecar.prev.xPos
+                racecar.yPos = racecar.prev.yPos
+            }*/
+
+            //console.log(racecar.xPos+", prev xpos:" +race
+
+            /*if(isPointInCircle(topRight_x, topRight_y, leftInnerCircle)){
+                let xCurrent = topRight_x
+                let yCurrent = topRight_y
+                let xBefore = racecar.prev.xPos+racecar.width
+                let yBefore = racecar.prev.yPos
+                if(xCurrent-xBefore===0){
+                    xCurrent = xCurrent+0.0001
+                }
+                let slope = (yCurrent-yBefore)/(xCurrent-xBefore)
+                let b = -slope*xCurrent+yCurrent
+                let xTest = topRight_x
+                let yTest = slope*xTest+b
+                while(isPointInCircle(xTest,yTest,leftInnerCircle)) {
+                    xTest = xTest - .001
+                    yTest = slope*xTest+b
+
+                    //console.log(xTest+", "+yTest)
+                }
+                if(xTest<topRight_x){
+                    racecar.xPos = racecar.prev.xPos
+                    racecar.yPos = racecar.prev.yPos
+                }else{
+                    racecar.xPos = xTest
+                    racecar.yPos = yTest
+                }
+
+            }*/
+                //Is (xTest, yTest) in the circle?
+                    //If yes, keep testing...
+                    //If no, move the racecar to (xTest, yTest)
+
+
+
             if(isPointInCircle(racecar.xPos+racecar.width, racecar.yPos+racecar.height, leftInnerCircle)
                 || isPointInCircle(racecar.xPos+racecar.width, racecar.yPos, leftInnerCircle)){
                 racecar.xPos = racecar.prev.xPos
                 racecar.yPos = racecar.prev.yPos
-            }
-
-            if(racecar.xPos < 200){
-                if(!isPointInCircle(racecar.xPos, racecar.yPos, leftOuterCircle) || !isPointInCircle(racecar.xPos, racecar.yPos+racecar.height, leftOuterCircle)){
-                    racecar.xPos = racecar.prev.xPos
-                    racecar.yPos = racecar.prev.yPos
-                }
             }
 
 
@@ -131,8 +158,7 @@
             ctx.fillRect(racecar.xPos, racecar.yPos, racecar.width, racecar.height)
             //Left outer edge "semi" circle
             ctx.beginPath();
-
-            ctx.arc(leftOuterCircle.xPos, leftOuterCircle.yPos, leftOuterCircle.radius, 0, 2 * Math.PI);
+            ctx.arc(200, 250, 175, 0, 2 * Math.PI);
             ctx.stroke();
             //Left inner edge
             ctx.beginPath();
