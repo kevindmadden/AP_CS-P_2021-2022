@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<strong><code style="font-size:20px">addMarble(xPos, yPos, radius, color[optional])</code></strong><br>
+<ul>
+<li><code>xPos</code> - The x-coordinate of where the marble spawns</li>
+<li><code>yPos</code> - The y-coordinate of where the marble spawns</li>
+<li><code>radius</code> - The radius of the marble<br></li>
+<li><code>color[optional]</code> - The hex code of the color you want (see example 2). Use google's color picker: <a href="https://g.co/kgs/Bt8tSX">https://g.co/kgs/Bt8tSX</a></li>
+</ul>
+<u>Example 1:</u><br>
+<strong><code>addMarble(30, 20, 10)</code><br></strong>
+This would spawn a marble 30px to the right and 20px down (measured from the top-left corner of the screen) with a radius of 10px and a random color.<br>
+<br>
+<u>Example 2:</u><br>
+<strong><code>addMarble(30, 20, 10, "#FF10F0")</code><br></strong>
+This does exactly the same thing as Example 1 except the color will be #FF10F0 (neon pink) instead of random. Again, use google's color picker to figure out what the hex code of any color is: <a href="https://g.co/kgs/Bt8tSX">https://g.co/kgs/Bt8tSX</a><br><br>
+<hr>
+<strong><code style="font-size:20px">addTriangle(xPos, yPos, xRatio, yRatio, dilationFactor, color[optional])</code></strong><br>
+<ul>
+<li><code>xPos</code> - The x-coordinate of the triangle's center of mass (<em>note: the center of mass is the white dot in the middle of the triangle</em>)</li>
+<li><code>yPos</code> - The y-coordinate of the triangle's center of mass</li>
+<li><code>xRatio</code> - The ratio of the triangle's width (use <code>cos</code>)</li>
+<li><code>yRatio</code> - The ratio of the triangle's height (use <code>sin</code>)</li>
+<li><code>dilationFactor</code> - Your x-ratio and y-ratio are always going to be values under 1 since you are using <code>cos</code> and <code>sin</code>. If you drew a triangle that was that width and that height, then it would be really small... so specify here how much you want to scale your triangle up. You'll probably want a value here between 10ish and 1000ish.</li>
+<li><code>color[optional]</code> - This works the same as it does in <code>addMarble</code>. See the full explanation there.</li>
+</ul>
+
+<u>Example 1:</u><br>
+<code>addTriangle(20, 200, cos(160), sin(160), 400)</code><br>
+This would generate a triangle with a center of mass (the white dot) 20px to the right and 200px down (measured from the top-left corner). The triangle drawn is the right triangle you would get if you drew a line at a 160 degree angle and then drew a line straight down to the x-axis at a right-angle. The dilation factor is 400 (so we are multiplying both the xRatio and yRatio by 400).<br><br>
+<u>Example 2:</u><br>
+<code>addTriangle(20, 200, cos(160), sin(160), 400, "#FFFF00")</code><br>
+This does exactly the same thing as Example 1 except the color will be #FFFF00 (yellow) instead of being blue by default. Again, use google's color picker to figure out what the hex code of any color is: <a href="https://g.co/kgs/Bt8tSX">https://g.co/kgs/Bt8tSX</a><br><br>
+
+
+</body>
+</html>
