@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <canvas id="canvas" width="500px" height="500px" style="border: 1px solid black;" tabindex="1" autofocus></canvas>
+    <p id="coordinateValues">Coordinates - x: 0, y: 0</p>
+    <script>
+        //Canvas API: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+        const canvas = document.getElementById("canvas")
+        const ctx = canvas.getContext("2d")
+
+        let translate = {
+            xPos: -500,
+            xVel: 70,
+        }
+        ctx.translate(-500,0)
+
+        let prevTimeStamp = 0
+        window.requestAnimationFrame(gameLoop)
+        function gameLoop(currentTimeStamp) {
+            let timeElapsed = (currentTimeStamp - prevTimeStamp) / 1000
+            prevTimeStamp = currentTimeStamp
+            ctx.clearRect(-1000, 0, 2000, 500)
+
+            translate.xPos = translate.xPos + translate.xVel*timeElapsed
+            ctx.restore()
+            ctx.save()
+            ctx.translate(translate.xPos, 0)
+            drawBars()
+
+
+            window.requestAnimationFrame(gameLoop)
+        }
+
+        function drawBars(){
+            let height = 500
+            for(let x = -1000; x<1000; x=x+100){
+                ctx.fillRect(x, 0, 10, height)
+                height = height-25
+            }
+        }
+
+        //Collision Functions
+        function didCirclesColl(circle1, circle2){
+            let distance = Math.sqrt(Math.pow((circle1.xPos-circle2.xPos),2) + Math.pow((circle1.yPos-circle2.yPos),2))
+            if(distance < circle1.radius+circle2.radius){
+                return true
+            }
+            return false
+        }
+
+        function didRectRectColl(rect1, rect2){ //https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+            if (rect1.xPos < rect2.xPos + rect2.width &&
+                rect1.xPos + rect1.width > rect2.xPos &&
+                rect1.yPos < rect2.yPos + rect2.height &&
+                rect1.yPos + rect1.height > rect2.yPos) {
+                return true
+            }else{
+                return false
+            }
+        }
+
+
+        //Mouse Input Stuff
+        let xCoord = 0
+        let yCoord = 0
+        function getCursorPosition(canvas, event) {
+            const rect = canvas.getBoundingClientRect()
+            xCoord = event.clientX - rect.left
+            yCoord = event.clientY - rect.top
+            document.getElementById("coordinateValues").innerHTML = "Coordinates - x: "+xCoord+", y: "+yCoord
+        }
+
+        canvas.addEventListener('mousemove', function(e) { getCursorPosition(canvas, e)})
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        // Keyboard Input
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        canvas.addEventListener('keydown', keyHandler)
+        canvas.addEventListener('keyup', keyHandler)
+
+        let kbInput = {
+            left : {
+                value : "ArrowLeft",
+                isPressed: false,
+            },
+            right : {
+                value : "ArrowRight",
+                isPressed: false,
+            },
+            down : {
+                value : "ArrowDown",
+                isPressed: false,
+            },
+            up : {
+                value : "ArrowUp",
+                isPressed: false,
+            },
+        }
+
+        function keyHandler(event) {
+            event.preventDefault() //prevents the keys that you press from performing their default action in your internet browser (for ex: when you press the down arrow key, the browser window will not scroll down)
+            let type = event.type
+            let isPressed = false
+            if(type==="keydown"){
+                isPressed = true
+            }
+            if(event.key===kbInput.left.value){
+                kbInput.left.isPressed = isPressed
+            }
+            if(event.key===kbInput.right.value){
+                kbInput.right.isPressed = isPressed
+            }
+            if(event.key===kbInput.up.value){
+                kbInput.up.isPressed = isPressed
+            }
+            if(event.key===kbInput.down.value){
+                kbInput.down.isPressed = isPressed
+            }
+        }
+
+    </script>
+</head>
+<body></body>
+</html>

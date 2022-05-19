@@ -1,31 +1,222 @@
-//    addMarble(xPos, yPos, radius)
+/*
+  Properties you can change 
+*/
+let shouldConstantlyChangeGravity = false //options: true, false
+let showCenterOfMass = true //options: true, false (setting it to false will get rid of the white dots that show where the center of mass is located)
+let centerOfMassSize = 5 //options: any number (this sets the size of the radius for the dot that shows the center of mass)
+let gravityStrength = 1 //options: any number (this sets the strength of the gravity; you can put a negative value here to make the gravity be upside down)
+let showWireFrames = false //options: true, false
+let restitution = 0 //options: any number (this sets how bouncy the marbles are; a value of 0 means the mables will not bounce; a value of 1 makes the marbles really bouncy)
 
-//    generateTriangle(xPos, yPos, xRatio, yRatio, dilationFactor)
-//      Note: The yPos values work weirdly. (0,0) is in the top left corner. So (0,150) is 150 pixels down from the top left corner. As you increase y, you move further *down*.
 function addNewStuff(){
-    shouldConstantlyChangeGravity = false
-    showCenterOfMass = true
-    gravityStrength = 1
-
     /*
-        Your code goes below.
+        Your code.
     */
-    addMarble(30,20,10, "#FF10F0")
-    addTriangle(20, 200, cos(160), sin(160), 400, "#FFFF00")
+    addTriangle(0, 675, cos(110), sin(110), 1000, "#ffc9c9") //example of adding a triangle (in a useless spot though!)
+    addRectangle(400, 677, 600, 50, "#FFFF00")
+    addRectangle(700, 677, 50, 225, "#ffc9c9")
 
 
 
+
+
+
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
+    addMarble(60,4,10, "#8ae6ff")
     /*
       Your code stops here.
+      STOP  STOP  STOP  STOP  STOP  STOP  STOP  STOP  STOP  STOP  
+      Don't change anything below here.
     */
+
 }
+
+
 
 let generatedTriangles = []
 let marbleCoordinates = []
-let shouldConstantlyChangeGravity = false
-let showCenterOfMass = true
-let centerOfMassSize = 5
-let gravityStrength = 1
+let marbles = []
 
 function cos(degrees){
     return Math.cos(toRadians(degrees))
@@ -37,7 +228,6 @@ function sin(degrees){
 function addMarble(xCoord, yCoord, radius, color=['#EA1070', '#EAC03C', '#25DDBC', '#007DB0', '#252B7F', '#FF6040'][Math.round(Math.random() * 6 - 0.5)]){
     marbleCoordinates.push(xCoord, yCoord, radius, color)
 }
-
 function toRadians(degrees) {
     return degrees * (Math.PI / 180);
 }
@@ -76,6 +266,27 @@ function addTriangle(xCenterOfMass, yCenterOfMass, xRatio, yRatio, dilationFacto
 
 }
 
+function addRectangle(xCenterOfMass, yCenterOfMass, width, height, color="green"){
+    generatedTriangles.push(
+        Bodies.rectangle(xCenterOfMass, yCenterOfMass, width, height, {
+            isStatic: true,
+            render: {
+                fillStyle: color
+            }
+        }))
+
+    if(showCenterOfMass){
+        generatedTriangles.push(Bodies.circle(xCenterOfMass, yCenterOfMass, centerOfMassSize, {
+            isStatic: true,
+            isSensor: true,
+            render: {
+                fillStyle: "white"
+            }
+        }))
+    }
+
+}
+
 
 /*Bodies.fromVertices(200, 200, Vertices.fromPath('50 0 63 38 100 38'),{
       isStatic: true,
@@ -102,7 +313,7 @@ function init() {
         element: document.body,
         engine: engine,
         options: {
-            wireframes: false,
+            wireframes: showWireFrames,
             background: 'transparent',
             width: width,
             height: height
@@ -139,7 +350,7 @@ function init() {
         for (var j = 0; j < 6; j++) {
           color = color + chars[Math.round(Math.random() * 16 - 0.5)];
         }*/
-        World.add(engine.world, Bodies.circle(
+        let tempCircle = Bodies.circle(
             marbleCoordinates[i],
             marbleCoordinates[i+1],
             radius, {
@@ -147,7 +358,12 @@ function init() {
                     fillStyle: color,
                 }
             }
-        ))
+        )
+        tempCircle.friction = 0
+        tempCircle.frictionAir = 0.0005
+        tempCircle.restitution = restitution
+        marbles.push(tempCircle)
+        World.add(engine.world, tempCircle)
     }
 
     Engine.run(engine);
@@ -155,12 +371,14 @@ function init() {
     Render.run(render);
     let num = 0;
     function update() {
+
         engine.world.gravity.x = Math.sin(num / 100)*gravityStrength;
         engine.world.gravity.y = Math.cos(num / 100)*gravityStrength;
         if(shouldConstantlyChangeGravity){
             num += 1.7; //NOTE: Uncommenting this line will make gravity constantly switch
         }
         idRAF = requestAnimationFrame(update.bind(this));
+
     }
     update();
 }
@@ -169,4 +387,4 @@ init();
 
 $(window).resize(function() {
     init();
-});
+})
